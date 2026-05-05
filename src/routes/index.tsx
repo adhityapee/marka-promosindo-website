@@ -82,22 +82,6 @@ function Home() {
             <Link to="/products"><button className="btn-gold">Lihat Katalog Produk</button></Link>
             <Link to="/contact"><button className="btn-ghost">Konsultasi Gratis</button></Link>
           </div>
-          <div className="hero-stats">
-            <div>
-              <div className="hstat-num">26+</div>
-              <div className="hstat-label">Produk</div>
-            </div>
-            <div className="hstat-divider" />
-            <div>
-              <div className="hstat-num">3</div>
-              <div className="hstat-label">Kategori</div>
-            </div>
-            <div className="hstat-divider" />
-            <div>
-              <div className="hstat-num">100%</div>
-              <div className="hstat-label">Custom</div>
-            </div>
-          </div>
         </div>
         <div className="hero-right">
           <div className="hero-grid">

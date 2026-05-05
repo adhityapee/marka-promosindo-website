@@ -59,7 +59,8 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 function Home() {
-  const heroProducts = allProducts.filter(p => p.imgFile).slice(0, 4)
+  const HERO_NAMES = ['Kipas N68', 'PL Flask Tumbler', 'Kipas T-21', 'Travel Tumbler']
+  const heroProducts = allProducts.filter(p => HERO_NAMES.includes(p.name) && p.imgFile)
   const featured = allProducts.filter(p => FEATURED_NAMES.includes(p.name))
   const marqueeItems = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
 

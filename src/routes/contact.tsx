@@ -44,7 +44,7 @@ function Contact() {
           </p>
           <div className="contact-items">
             <a
-              href="https://wa.me/6281399768666?text=Halo%2C+saya+ingin+bertanya+tentang+produk+Marka+Promosindo"
+              href="https://wa.me/6281399768866?text=Halo%2C+saya+ingin+bertanya+tentang+produk+Marka+Promosindo"
               target="_blank"
               rel="noopener noreferrer"
               className="contact-item"

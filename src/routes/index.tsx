@@ -59,8 +59,12 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 function Home() {
-  const HERO_NAMES = ['Kipas N68', 'PL Flask Tumbler', 'Kipas T-21', 'Travel Tumbler']
-  const heroProducts = allProducts.filter(p => HERO_NAMES.includes(p.name) && p.imgFile)
+  const heroImages = [
+    { src: '/products/01-kipas-t-21.jpg', alt: 'Kipas T-21' },
+    { src: '/products/07-pl-flask-tumbler.jpg', alt: 'PL Flask Tumbler' },
+    { src: '/products/26-goodie-bag.jpg', alt: 'Goodie Bag' },
+    { src: '/products/25-gelas-tumbler.jpg', alt: 'Gelas Tumbler' },
+  ]
   const featured = allProducts.filter(p => FEATURED_NAMES.includes(p.name))
   const marqueeItems = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
 
@@ -86,9 +90,9 @@ function Home() {
         </div>
         <div className="hero-right">
           <div className="hero-grid">
-            {heroProducts.map(p => (
-              <div key={p.name} className="hero-img-cell">
-                <img src={p.imgFile!} alt={p.name} />
+            {heroImages.map(img => (
+              <div key={img.src} className="hero-img-cell">
+                <img src={img.src} alt={img.alt} />
                 <div className="hero-img-overlay" />
               </div>
             ))}

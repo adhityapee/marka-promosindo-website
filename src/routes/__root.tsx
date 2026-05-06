@@ -69,7 +69,7 @@ function Footer() {
         <div>
           <div className="footer-nav-title">Kontak</div>
           <div className="footer-nav">
-            <a>wa.me/081399768666</a>
+            <a>wa.me/081399768866</a>
             <a>@markapromosindo</a>
             <a>markapromosindo.com</a>
           </div>

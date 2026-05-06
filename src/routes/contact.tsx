@@ -57,7 +57,7 @@ function Contact() {
               </div>
               <div>
                 <div className="c-label">WhatsApp</div>
-                <div className="c-val">081399768666</div>
+                <div className="c-val">081399768866</div>
               </div>
             </a>
             <div className="contact-item">

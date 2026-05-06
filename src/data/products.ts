@@ -12,7 +12,7 @@ export const allProducts: Product[] = [
     "price": "Rp 110.000",
     "cat": "Kipas",
     "ml": "",
-    "imgFile": "/products/01-kipas-t-21.png"
+    "imgFile": "/products/01-kipas-t-21.jpg"
   },
   {
     "name": "Kipas N607",
@@ -54,7 +54,7 @@ export const allProducts: Product[] = [
     "price": "Rp 110.000",
     "cat": "Tumbler",
     "ml": "500ml",
-    "imgFile": "/products/07-pl-flask-tumbler.png"
+    "imgFile": "/products/07-pl-flask-tumbler.jpg"
   },
   {
     "name": "QL Tumbler",
@@ -180,13 +180,13 @@ export const allProducts: Product[] = [
     "price": "Rp 70.000",
     "cat": "Tumbler",
     "ml": "360ml",
-    "imgFile": "/products/25-gelas-tumbler.png"
+    "imgFile": "/products/25-gelas-tumbler.jpg"
   },
   {
     "name": "Goodie Bag",
     "price": "Rp 14.000–15.000",
     "cat": "Bag",
     "ml": "",
-    "imgFile": "/products/26-goodie-bag.png"
+    "imgFile": "/products/26-goodie-bag.jpg"
   }
 ]

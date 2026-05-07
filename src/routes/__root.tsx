@@ -1,20 +1,7 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-import { Link, Outlet } from '@tanstack/react-router'
-
-import appCss from '../styles.css?url'
+import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Marka Promosindo — Souvenir & Merchandise Custom' },
-    ],
-    links: [
-      { rel: 'stylesheet', href: appCss },
-    ],
-  }),
-  shellComponent: RootDocument,
+  component: RootLayout,
 })
 
 function Navbar() {
@@ -81,18 +68,12 @@ function Footer() {
   )
 }
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootLayout() {
   return (
-    <html lang="id">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <Navbar />
-        <Outlet />
-        <Footer />
-        <Scripts />
-      </body>
-    </html>
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </>
   )
 }

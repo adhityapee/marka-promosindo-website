@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { allProducts } from '../data/products'
 import { faqs } from '../data/faqs'
 
@@ -14,10 +14,38 @@ function badgeClass(cat: string) {
   return 'badge-bag'
 }
 
-function ProductCard({ p }: { p: typeof allProducts[0] }) {
+function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  return (
+    <div className="lightbox-overlay" onClick={onClose}>
+      <button className="lightbox-close" onClick={onClose} aria-label="Tutup">&#x2715;</button>
+      <img
+        className="lightbox-img"
+        src={src}
+        alt={alt}
+        onClick={e => e.stopPropagation()}
+      />
+    </div>
+  )
+}
+
+function ProductCard({ p, onImgClick }: { p: typeof allProducts[0]; onImgClick: (src: string, alt: string) => void }) {
   return (
     <div className="product-card">
-      <div className="product-img">
+      <div
+        className="product-img"
+        style={p.imgFile ? { cursor: 'zoom-in' } : undefined}
+        onClick={() => p.imgFile && onImgClick(p.imgFile, p.name)}
+      >
         {p.imgFile
           ? <img src={p.imgFile} alt={p.name} loading="lazy" />
           : (
@@ -59,6 +87,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 function Home() {
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
   const heroImages = [
     { src: '/products/01-kipas-t-21.jpg', alt: 'Kipas T-21' },
     { src: '/products/07-pl-flask-tumbler.jpg', alt: 'PL Flask Tumbler' },
@@ -70,6 +99,9 @@ function Home() {
 
   return (
     <>
+      {lightbox && (
+        <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={() => setLightbox(null)} />
+      )}
       {/* HERO */}
       <section className="hero">
         <div className="hero-left">
@@ -187,7 +219,9 @@ function Home() {
           <Link to="/products"><button className="btn-gold">Lihat Semua →</button></Link>
         </div>
         <div className="products-grid">
-          {featured.map(p => <ProductCard key={p.name} p={p} />)}
+          {featured.map(p => (
+            <ProductCard key={p.name} p={p} onImgClick={(src, alt) => setLightbox({ src, alt })} />
+          ))}
         </div>
       </section>
 

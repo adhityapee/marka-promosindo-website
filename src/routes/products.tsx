@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { allProducts } from '../data/products'
 
 export const Route = createFileRoute('/products')({ component: Products })
@@ -12,10 +12,38 @@ function badgeClass(cat: string) {
   return 'badge-bag'
 }
 
-function ProductCard({ p }: { p: typeof allProducts[0] }) {
+function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  return (
+    <div className="lightbox-overlay" onClick={onClose}>
+      <button className="lightbox-close" onClick={onClose} aria-label="Tutup">&#x2715;</button>
+      <img
+        className="lightbox-img"
+        src={src}
+        alt={alt}
+        onClick={e => e.stopPropagation()}
+      />
+    </div>
+  )
+}
+
+function ProductCard({ p, onImgClick }: { p: typeof allProducts[0]; onImgClick: (src: string, alt: string) => void }) {
   return (
     <div className="product-card">
-      <div className="product-img">
+      <div
+        className="product-img"
+        style={p.imgFile ? { cursor: 'zoom-in' } : undefined}
+        onClick={() => p.imgFile && onImgClick(p.imgFile, p.name)}
+      >
         {p.imgFile
           ? <img src={p.imgFile} alt={p.name} loading="lazy" />
           : (
@@ -48,10 +76,14 @@ const FILTERS: { label: string; value: Category }[] = [
 
 function Products() {
   const [active, setActive] = useState<Category>('all')
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
   const visible = active === 'all' ? allProducts : allProducts.filter(p => p.cat === active)
 
   return (
     <div style={{ paddingTop: '70px', background: 'var(--lighter)', paddingBottom: '80px' }}>
+      {lightbox && (
+        <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={() => setLightbox(null)} />
+      )}
       <div style={{ padding: '60px 80px 32px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
         <div>
           <div className="sec-label">Koleksi Lengkap</div>
@@ -70,7 +102,9 @@ function Products() {
         </div>
       </div>
       <div className="products-grid" style={{ padding: '40px 80px' }}>
-        {visible.map(p => <ProductCard key={p.name} p={p} />)}
+        {visible.map(p => (
+          <ProductCard key={p.name} p={p} onImgClick={(src, alt) => setLightbox({ src, alt })} />
+        ))}
       </div>
     </div>
   )

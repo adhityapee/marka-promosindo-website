@@ -8,13 +8,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <Link to="/" className="nav-logo">
-        <div className="logo-icon">
-          <svg viewBox="0 0 52 52" fill="none">
-            <path d="M10 40 L18 12 L26 30 L34 12 L42 40" stroke="#C9A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-            <line x1="10" y1="40" x2="42" y2="40" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-        </div>
-        <span className="logo-text">Marka Promosindo</span>
+        <img src="/logo-marka-promosindo-1.png" alt="Marka Promosindo" className="nav-logo-img" />
       </Link>
 
       <ul className="nav-menu">

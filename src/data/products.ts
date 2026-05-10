@@ -1,7 +1,7 @@
 export interface Product {
   name: string;
   price: string;
-  cat: "Kipas" | "Tumbler" | "Bag";
+  cat: "Kipas" | "Tumbler" | "Bag" | "Powerbank";
   ml: string;
   imgFile: string | null;
 }
@@ -188,5 +188,26 @@ export const allProducts: Product[] = [
     cat: "Bag",
     ml: "",
     imgFile: "/products/26-goodie-bag.jpg",
+  },
+  {
+    name: "Hand Bag 1",
+    price: "-",
+    cat: "Bag",
+    ml: "",
+    imgFile: "/products/27-hand-bag-1.jpg",
+  },
+  {
+    name: "Hand Bag 2",
+    price: "-",
+    cat: "Bag",
+    ml: "",
+    imgFile: "/products/28-hand-bag-2.jpg",
+  },
+  {
+    name: "Powerbank",
+    price: "-",
+    cat: "Powerbank",
+    ml: "",
+    imgFile: "/products/29-powerbank.jpg",
   },
 ];

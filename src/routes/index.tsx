@@ -6,11 +6,12 @@ import { faqs } from '../data/faqs'
 export const Route = createFileRoute('/')({ component: Home })
 
 const MARQUEE_ITEMS = ['Custom Printing', 'Corporate Souvenir', 'Wedding Gift', 'Goodie Bag', 'Tumbler Custom', 'Merchandise']
-const FEATURED_NAMES = ['Kipas T-21', 'AE Tumbler', 'QEF Tumbler', 'AB Tumbler']
+const FEATURED_NAMES = ['Kipas T-21', 'AE Tumbler', 'Hand Bag 1', 'Hand Bag 2', 'Powerbank', 'AB Tumbler']
 
 function badgeClass(cat: string) {
   if (cat === 'Kipas') return 'badge-kipas'
   if (cat === 'Tumbler') return 'badge-tumbler'
+  if (cat === 'Powerbank') return 'badge-powerbank'
   return 'badge-bag'
 }
 

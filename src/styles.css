@@ -598,6 +598,10 @@ body {
   background: #2a4a6b;
   color: white;
 }
+.badge-earphone {
+  background: #4a2a6b;
+  color: white;
+}
 
 .prod-ml {
   position: absolute;

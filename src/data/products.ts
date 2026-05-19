@@ -1,7 +1,7 @@
 export interface Product {
   name: string;
   price: string;
-  cat: "Kipas" | "Tumbler" | "Bag" | "Powerbank";
+  cat: "Kipas" | "Tumbler" | "Bag" | "Powerbank" | "Earphone";
   ml: string;
   imgFile: string | null;
 }
@@ -209,5 +209,33 @@ export const allProducts: Product[] = [
     cat: "Powerbank",
     ml: "",
     imgFile: "/products/29-powerbank.jpg",
+  },
+  {
+    name: "Powerbank 2",
+    price: "Rp 420.000",
+    cat: "Powerbank",
+    ml: "",
+    imgFile: "/products/powerbank 2.jpg",
+  },
+  {
+    name: "Earphone 1",
+    price: "Rp 200.000",
+    cat: "Earphone",
+    ml: "",
+    imgFile: "/products/earphone 1.jpg",
+  },
+  {
+    name: "Earphone 2",
+    price: "Rp 220.000",
+    cat: "Earphone",
+    ml: "",
+    imgFile: "/products/earphone 2.jpg",
+  },
+  {
+    name: "Earphone 3",
+    price: "Rp 300.000",
+    cat: "Earphone",
+    ml: "",
+    imgFile: "/products/earphone 3.png",
   },
 ];

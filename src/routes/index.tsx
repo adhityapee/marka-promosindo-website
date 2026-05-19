@@ -6,12 +6,13 @@ import { faqs } from '../data/faqs'
 export const Route = createFileRoute('/')({ component: Home })
 
 const MARQUEE_ITEMS = ['Custom Printing', 'Corporate Souvenir', 'Wedding Gift', 'Goodie Bag', 'Tumbler Custom', 'Merchandise']
-const FEATURED_NAMES = ['Kipas T-21', 'AE Tumbler', 'Hand Bag 1', 'Hand Bag 2', 'Powerbank', 'AB Tumbler']
+const FEATURED_NAMES = ['Kipas T-21', 'PL Flask Tumbler', 'Powerbank 2', 'Earphone 3', 'Hand Bag 2', 'Kipas N607']
 
 function badgeClass(cat: string) {
   if (cat === 'Kipas') return 'badge-kipas'
   if (cat === 'Tumbler') return 'badge-tumbler'
   if (cat === 'Powerbank') return 'badge-powerbank'
+  if (cat === 'Earphone') return 'badge-earphone'
   return 'badge-bag'
 }
 
@@ -90,10 +91,10 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 function Home() {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
   const heroImages = [
-    { src: '/products/01-kipas-t-21.jpg', alt: 'Kipas T-21' },
+    { src: '/products/02-kipas-n607.jpg', alt: 'Kipas N607' },
+    { src: '/products/powerbank 2.jpg', alt: 'Powerbank 2' },
+    { src: '/products/earphone 3.png', alt: 'Earphone 3' },
     { src: '/products/07-pl-flask-tumbler.jpg', alt: 'PL Flask Tumbler' },
-    { src: '/products/26-goodie-bag.jpg', alt: 'Goodie Bag' },
-    { src: '/products/25-gelas-tumbler.jpg', alt: 'Gelas Tumbler' },
   ]
   const featured = allProducts.filter(p => FEATURED_NAMES.includes(p.name))
   const marqueeItems = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]

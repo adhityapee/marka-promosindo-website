@@ -4,12 +4,13 @@ import { allProducts } from '../data/products'
 
 export const Route = createFileRoute('/products')({ component: Products })
 
-type Category = 'all' | 'Kipas' | 'Tumbler' | 'Bag' | 'Powerbank'
+type Category = 'all' | 'Kipas' | 'Tumbler' | 'Bag' | 'Powerbank' | 'Earphone'
 
 function badgeClass(cat: string) {
   if (cat === 'Kipas') return 'badge-kipas'
   if (cat === 'Tumbler') return 'badge-tumbler'
   if (cat === 'Powerbank') return 'badge-powerbank'
+  if (cat === 'Earphone') return 'badge-earphone'
   return 'badge-bag'
 }
 
@@ -69,11 +70,12 @@ function ProductCard({ p, onImgClick }: { p: typeof allProducts[0]; onImgClick: 
 }
 
 const FILTERS: { label: string; value: Category }[] = [
-  { label: 'Semua (29)', value: 'all' },
+  { label: 'Semua (33)', value: 'all' },
   { label: 'Kipas (3)', value: 'Kipas' },
   { label: 'Tumbler (22)', value: 'Tumbler' },
   { label: 'Bag (3)', value: 'Bag' },
-  { label: 'Powerbank (1)', value: 'Powerbank' },
+  { label: 'Powerbank (2)', value: 'Powerbank' },
+  { label: 'Earphone (3)', value: 'Earphone' },
 ]
 
 function Products() {

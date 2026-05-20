@@ -38,7 +38,6 @@ function About() {
           </div>
         </div>
         </div>
-        </div>
       </div>
 
       <div className="about-values-section">

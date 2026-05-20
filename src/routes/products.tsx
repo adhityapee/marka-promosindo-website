@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
+import { Download } from 'lucide-react'
 import { allProducts } from '../data/products'
+import { generateCatalog } from '../utils/generateCatalog'
 
 export const Route = createFileRoute('/products')({ component: Products })
 
@@ -81,7 +83,16 @@ const FILTERS: { label: string; value: Category }[] = [
 function Products() {
   const [active, setActive] = useState<Category>('all')
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
+  const [isGenerating, setIsGenerating] = useState(false)
   const visible = active === 'all' ? allProducts : allProducts.filter(p => p.cat === active)
+
+  const handleDownload = async () => {
+    if (isGenerating) return
+    setIsGenerating(true)
+    try { await generateCatalog() }
+    catch { alert('Gagal membuat PDF. Coba lagi.') }
+    finally { setIsGenerating(false) }
+  }
 
   return (
     <div style={{ paddingTop: '70px', background: 'var(--lighter)', paddingBottom: '80px' }}>
@@ -93,16 +104,30 @@ function Products() {
           <div className="sec-label">Koleksi Lengkap</div>
           <h2 className="sec-title" style={{ margin: 0 }}>Semua Produk</h2>
         </div>
-        <div className="filter-row">
-          {FILTERS.map(f => (
-            <button
-              key={f.value}
-              className={`filter-btn${active === f.value ? ' active' : ''}`}
-              onClick={() => setActive(f.value)}
-            >
-              {f.label}
-            </button>
-          ))}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px' }}>
+          <div className="filter-row">
+            {FILTERS.map(f => (
+              <button
+                key={f.value}
+                className={`filter-btn${active === f.value ? ' active' : ''}`}
+                onClick={() => setActive(f.value)}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+          <button
+            className="btn-gold"
+            onClick={handleDownload}
+            disabled={isGenerating}
+            style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px 20px', fontSize: '13px', opacity: isGenerating ? 0.7 : 1, cursor: isGenerating ? 'wait' : 'pointer' }}
+          >
+            {isGenerating ? (
+              <><span className="spinner" />Membuat PDF...</>
+            ) : (
+              <><Download size={14} />Unduh Katalog</>
+            )}
+          </button>
         </div>
       </div>
       <div className="products-grid" style={{ padding: '40px 80px' }}>

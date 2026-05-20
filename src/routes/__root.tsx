@@ -1,5 +1,5 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export const Route = createRootRoute({
   component: RootLayout,
@@ -13,13 +13,41 @@ const WA_ICON = (
   </svg>
 )
 
+function AnnouncementBanner() {
+  return (
+    <div className="announcement-banner">
+      <span className="announcement-dot" />
+      <span className="announcement-text">Custom Printing · MOQ Fleksibel · Pengiriman ke Seluruh Indonesia</span>
+      <Link to="/products" className="announcement-cta">Lihat Produk →</Link>
+    </div>
+  )
+}
+
 function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const close = () => setOpen(false)
+
+  useEffect(() => {
+    let lastY = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrolled(y > 60)
+      if (y > 160) {
+        setHidden(y > lastY)
+      } else {
+        setHidden(false)
+      }
+      lastY = y
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <>
-      <nav className="navbar">
+      <nav className={`navbar${scrolled ? ' scrolled' : ''}${hidden ? ' hidden' : ''}`}>
         <Link to="/" className="nav-logo" onClick={close}>
           <img src="/logo-marka-promosindo-1.png" alt="Marka Promosindo" className="nav-logo-img" />
         </Link>
@@ -63,6 +91,7 @@ function Navbar() {
 function Footer() {
   return (
     <footer>
+      <div className="container">
       <div className="footer-top">
         <div>
           <div className="footer-brand-name">Marka Promosindo</div>
@@ -80,7 +109,8 @@ function Footer() {
       </div>
       <div className="footer-bottom">
         <span className="footer-copy">© 2025 Marka Promosindo. All rights reserved.</span>
-        <span className="footer-copy" style={{ color: '#333' }}>Made with ♥ in Jakarta</span>
+        <span className="footer-copy">Made with ♥ in Jakarta</span>
+      </div>
       </div>
     </footer>
   )
@@ -89,6 +119,7 @@ function Footer() {
 function RootLayout() {
   return (
     <>
+      <AnnouncementBanner />
       <Navbar />
       <Outlet />
       <Footer />

@@ -52,8 +52,8 @@ function ProductCard({ p, onImgClick }: { p: typeof allProducts[0]; onImgClick: 
           ? <img src={p.imgFile} alt={p.name} loading="lazy" />
           : (
             <svg viewBox="0 0 80 80" style={{ width: '100%', height: '100%', padding: '20px' }}>
-              <rect width="80" height="80" fill="#f0ebe4"/>
-              <text x="40" y="45" textAnchor="middle" fill="#c9a96e" fontSize="12" fontFamily="serif">No Image</text>
+              <rect width="80" height="80" fill="#f0f0f0"/>
+              <text x="40" y="45" textAnchor="middle" fill="#595959" fontSize="12" fontFamily="sans-serif">No Image</text>
             </svg>
           )
         }
@@ -106,6 +106,8 @@ function Home() {
       )}
       {/* HERO */}
       <section className="hero">
+        <div className="container">
+        <div className="hero-inner">
         <div className="hero-left">
           <div className="hero-badge">
             <div className="hero-badge-dot" />
@@ -121,6 +123,22 @@ function Home() {
             <Link to="/products"><button className="btn-gold">Lihat Katalog Produk</button></Link>
             <Link to="/contact"><button className="btn-ghost">Konsultasi Gratis</button></Link>
           </div>
+          <div className="hero-stats">
+            <div>
+              <div className="hstat-num">33+</div>
+              <div className="hstat-label">Produk</div>
+            </div>
+            <div className="hstat-divider" />
+            <div>
+              <div className="hstat-num">5</div>
+              <div className="hstat-label">Kategori</div>
+            </div>
+            <div className="hstat-divider" />
+            <div>
+              <div className="hstat-num">100%</div>
+              <div className="hstat-label">Custom Print</div>
+            </div>
+          </div>
         </div>
         <div className="hero-right">
           <div className="hero-grid">
@@ -131,6 +149,8 @@ function Home() {
               </div>
             ))}
           </div>
+        </div>
+        </div>
         </div>
       </section>
 
@@ -147,6 +167,7 @@ function Home() {
 
       {/* WHY US */}
       <section className="section why-section">
+        <div className="container">
         <div className="why-grid">
           <div className="why-left">
             <div className="sec-label">Kenapa Marka Promosindo?</div>
@@ -156,42 +177,44 @@ function Home() {
           <div className="why-cards">
             <div className="why-card">
               <div className="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#007bff" strokeWidth="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
               <div className="why-card-title">Kualitas Premium</div>
               <div className="why-card-desc">Setiap produk dipilih dengan ketat untuk memastikan kualitas terbaik.</div>
             </div>
             <div className="why-card">
               <div className="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#007bff" strokeWidth="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               </div>
               <div className="why-card-title">Pengiriman Cepat</div>
               <div className="why-card-desc">Proses produksi dan pengiriman yang tepat waktu sesuai kebutuhan.</div>
             </div>
             <div className="why-card">
               <div className="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#007bff" strokeWidth="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               </div>
               <div className="why-card-title">MOQ Fleksibel</div>
               <div className="why-card-desc">Mulai dari pesanan kecil personal hingga ribuan unit corporate.</div>
             </div>
             <div className="why-card">
               <div className="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#007bff" strokeWidth="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </div>
               <div className="why-card-title">Konsultasi Gratis</div>
               <div className="why-card-desc">Tim kami siap membantu dari konsultasi desain hingga pengiriman.</div>
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* SERVICES */}
       <section className="section">
+        <div className="container">
         <div className="sec-label">Layanan Kami</div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <h2 className="sec-title">Apa yang Bisa<br />Kami Bantu?</h2>
-          <Link to="/contact"><button className="btn-gold" style={{ whiteSpace: 'nowrap', marginBottom: '2px' }}>Mulai Konsultasi →</button></Link>
+          <Link to="/contact" className="text-link-arrow">Mulai Konsultasi →</Link>
         </div>
         <div className="services-grid">
           {[
@@ -209,26 +232,30 @@ function Home() {
             </div>
           ))}
         </div>
+        </div>
       </section>
 
       {/* FEATURED PRODUCTS */}
       <section className="section-sm products-section">
+        <div className="container">
         <div className="products-header">
           <div>
             <div className="sec-label">Pilihan Unggulan</div>
             <h2 className="sec-title" style={{ marginBottom: 0 }}>Produk Terpopuler</h2>
           </div>
-          <Link to="/products"><button className="btn-gold">Lihat Semua →</button></Link>
+          <Link to="/products"><button className="btn-ghost">Lihat Semua →</button></Link>
         </div>
         <div className="products-grid">
           {featured.map(p => (
             <ProductCard key={p.name} p={p} onImgClick={(src, alt) => setLightbox({ src, alt })} />
           ))}
         </div>
+        </div>
       </section>
 
       {/* FAQ */}
       <section className="section faq-section">
+        <div className="container">
         <div style={{ textAlign: 'center', marginBottom: 0 }}>
           <div className="sec-label" style={{ textAlign: 'center' }}>FAQ</div>
           <h2 className="sec-title" style={{ textAlign: 'center', margin: '0 auto' }}>
@@ -243,8 +270,9 @@ function Home() {
             <h3>Masih Ada Pertanyaan?</h3>
             <p>Tim kami siap membantu Anda menemukan solusi souvenir terbaik. Hubungi kami sekarang!</p>
             <Link to="/contact"><button className="btn-gold">Hubungi Kami Sekarang</button></Link>
-            <div style={{ marginTop: '20px', fontSize: '13px', color: 'rgba(255,255,255,0.3)' }}>Respon dalam 1x24 jam</div>
+            <div style={{ marginTop: '20px', fontSize: '13px', color: 'var(--gray)' }}>Respon dalam 1x24 jam</div>
           </div>
+        </div>
         </div>
       </section>
     </>

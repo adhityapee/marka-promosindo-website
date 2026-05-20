@@ -52,8 +52,8 @@ function ProductCard({ p, onImgClick }: { p: typeof allProducts[0]; onImgClick: 
           ? <img src={p.imgFile} alt={p.name} loading="lazy" />
           : (
             <svg viewBox="0 0 80 80" style={{ width: '100%', height: '100%', padding: '20px' }}>
-              <rect width="80" height="80" fill="#f0ebe4"/>
-              <text x="40" y="45" textAnchor="middle" fill="#c9a96e" fontSize="12" fontFamily="serif">No Image</text>
+              <rect width="80" height="80" fill="#f0f0f0"/>
+              <text x="40" y="45" textAnchor="middle" fill="#595959" fontSize="12" fontFamily="sans-serif">No Image</text>
             </svg>
           )
         }
@@ -95,45 +95,49 @@ function Products() {
   }
 
   return (
-    <div style={{ paddingTop: '70px', background: 'var(--lighter)', paddingBottom: '80px' }}>
+    <div style={{ paddingTop: 'var(--header-h)', background: 'var(--lighter)', paddingBottom: '100px' }}>
       {lightbox && (
         <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={() => setLightbox(null)} />
       )}
-      <div style={{ padding: '60px 80px 32px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-        <div>
-          <div className="sec-label">Koleksi Lengkap</div>
-          <h2 className="sec-title" style={{ margin: 0 }}>Semua Produk</h2>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px' }}>
-          <div className="filter-row">
-            {FILTERS.map(f => (
-              <button
-                key={f.value}
-                className={`filter-btn${active === f.value ? ' active' : ''}`}
-                onClick={() => setActive(f.value)}
-              >
-                {f.label}
-              </button>
-            ))}
+      <div style={{ borderBottom: '1px solid var(--border)' }}>
+        <div className="container" style={{ padding: '60px 48px 32px', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+          <div>
+            <div className="sec-label">Koleksi Lengkap</div>
+            <h2 className="sec-title" style={{ margin: 0 }}>Semua Produk</h2>
           </div>
-          <button
-            className="btn-gold"
-            onClick={handleDownload}
-            disabled={isGenerating}
-            style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px 20px', fontSize: '13px', opacity: isGenerating ? 0.7 : 1, cursor: isGenerating ? 'wait' : 'pointer' }}
-          >
-            {isGenerating ? (
-              <><span className="spinner" />Membuat PDF...</>
-            ) : (
-              <><Download size={14} />Unduh Katalog</>
-            )}
-          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px' }}>
+            <div className="filter-row">
+              {FILTERS.map(f => (
+                <button
+                  key={f.value}
+                  className={`filter-btn${active === f.value ? ' active' : ''}`}
+                  onClick={() => setActive(f.value)}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+            <button
+              className="btn-gold"
+              onClick={handleDownload}
+              disabled={isGenerating}
+              style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px 20px', fontSize: '13px', opacity: isGenerating ? 0.7 : 1, cursor: isGenerating ? 'wait' : 'pointer' }}
+            >
+              {isGenerating ? (
+                <><span className="spinner" />Membuat PDF...</>
+              ) : (
+                <><Download size={14} />Unduh Katalog</>
+              )}
+            </button>
+          </div>
         </div>
       </div>
-      <div className="products-grid" style={{ padding: '40px 80px' }}>
-        {visible.map(p => (
-          <ProductCard key={p.name} p={p} onImgClick={(src, alt) => setLightbox({ src, alt })} />
-        ))}
+      <div className="container">
+        <div className="products-grid" style={{ paddingTop: '48px' }}>
+          {visible.map(p => (
+            <ProductCard key={p.name} p={p} onImgClick={(src, alt) => setLightbox({ src, alt })} />
+          ))}
+        </div>
       </div>
     </div>
   )

@@ -14,7 +14,8 @@ const CARD_H = IMG_H + TEXT_H
 const CONTENT_TOP = MARGIN + 20
 const CONTENT_BOTTOM = PAGE_H - 28
 
-const GOLD_R = 201, GOLD_G = 169, GOLD_B = 110
+const GOLD_R = 247, GOLD_G = 190, GOLD_B = 0    // Goldenrod #f7be00
+const BLUE_R = 0,   BLUE_G = 123, BLUE_B = 255  // Ocean Blue #007bff
 
 async function loadImage(url: string): Promise<string | null> {
   try {
@@ -78,16 +79,17 @@ async function preloadImages(products: Product[]): Promise<Map<string, string>> 
 }
 
 function drawCoverPage(doc: jsPDF, logoData: string | null, logoH: number) {
-  doc.setFillColor(17, 17, 17)
+  // Background: Midnight Ink
+  doc.setFillColor(5, 1, 13)
   doc.rect(0, 0, PAGE_W, PAGE_H, 'F')
 
-  // Garis dekoratif kiri
-  doc.setDrawColor(GOLD_R, GOLD_G, GOLD_B)
-  doc.setLineWidth(2)
-  doc.line(MARGIN, 80, MARGIN, PAGE_H - 80)
+  // Accent bar kiri — Ocean Blue
+  doc.setFillColor(BLUE_R, BLUE_G, BLUE_B)
+  doc.rect(MARGIN, 80, 3, PAGE_H - 160, 'F')
 
-  // Garis dekoratif kanan
-  doc.line(PAGE_W - MARGIN, 80, PAGE_W - MARGIN, PAGE_H - 80)
+  // Accent dot kanan — Goldenrod (lebih tipis, secondary)
+  doc.setFillColor(GOLD_R, GOLD_G, GOLD_B)
+  doc.rect(PAGE_W - MARGIN - 1, 80, 1, PAGE_H - 160, 'F')
 
   const cx = PAGE_W / 2
 
@@ -96,39 +98,41 @@ function drawCoverPage(doc: jsPDF, logoData: string | null, logoH: number) {
     doc.addImage(logoData, 'PNG', cx - logoW / 2, 210, logoW, logoH)
   }
 
-  // Garis horizontal atas teks
-  doc.setLineWidth(0.8)
-  doc.line(cx - 60, 298, cx + 60, 298)
+  // Separator atas — Ocean Blue
+  doc.setFillColor(BLUE_R, BLUE_G, BLUE_B)
+  doc.rect(cx - 50, 298, 100, 1, 'F')
 
-  // Teks utama
+  // Judul — putih, bersih, bold
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(30)
-  doc.setTextColor(GOLD_R, GOLD_G, GOLD_B)
+  doc.setTextColor(255, 255, 255)
   doc.text('KATALOG PRODUK', cx, 328, { align: 'center' })
 
+  // Brand name — Goldenrod sebagai aksen brand
+  doc.setFont('helvetica', 'bold')
+  doc.setFontSize(14)
+  doc.setTextColor(GOLD_R, GOLD_G, GOLD_B)
+  doc.text('MARKA PROMOSINDO', cx, 350, { align: 'center' })
+
+  // Tagline — putih redup
   doc.setFont('helvetica', 'normal')
-  doc.setFontSize(16)
-  doc.setTextColor(255, 255, 255)
-  doc.text('Marka Promosindo', cx, 352, { align: 'center' })
+  doc.setFontSize(9.5)
+  doc.setTextColor(160, 160, 170)
+  doc.text('Souvenir & Merchandise Premium', cx, 368, { align: 'center' })
 
-  doc.setFontSize(10)
-  doc.setTextColor(136, 136, 136)
-  doc.text('Souvenir & Merchandise Premium', cx, 370, { align: 'center' })
-
-  // Garis horizontal bawah teks
-  doc.setDrawColor(GOLD_R, GOLD_G, GOLD_B)
-  doc.setLineWidth(0.8)
-  doc.line(cx - 60, 382, cx + 60, 382)
+  // Separator bawah — Ocean Blue
+  doc.setFillColor(BLUE_R, BLUE_G, BLUE_B)
+  doc.rect(cx - 50, 380, 100, 1, 'F')
 
   // Kontak di bawah
-  doc.setFontSize(10)
-  doc.setTextColor(136, 136, 136)
-  doc.text('Tel: 081399768866', cx, PAGE_H - 90, { align: 'center' })
-  doc.text('Jakarta, Indonesia', cx, PAGE_H - 74, { align: 'center' })
+  doc.setFont('helvetica', 'normal')
+  doc.setFontSize(9)
+  doc.setTextColor(100, 100, 110)
+  doc.text('081399768866  ·  Jakarta, Indonesia', cx, PAGE_H - 82, { align: 'center' })
 }
 
 function drawPageStripe(doc: jsPDF) {
-  doc.setFillColor(GOLD_R, GOLD_G, GOLD_B)
+  doc.setFillColor(BLUE_R, BLUE_G, BLUE_B)
   doc.rect(0, 0, PAGE_W, 3, 'F')
 }
 
@@ -146,16 +150,16 @@ function drawPageFooter(doc: jsPDF, pageNum: number) {
 }
 
 function drawCategoryHeader(doc: jsPDF, cat: string, y: number) {
-  doc.setFillColor(26, 26, 26)
+  doc.setFillColor(BLUE_R, BLUE_G, BLUE_B)  // Ocean Blue header
   doc.rect(MARGIN, y, PAGE_W - MARGIN * 2, 20, 'F')
 
-  // Aksen gold kiri
+  // Aksen goldenrod kiri
   doc.setFillColor(GOLD_R, GOLD_G, GOLD_B)
   doc.rect(MARGIN, y, 3, 20, 'F')
 
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(9)
-  doc.setTextColor(GOLD_R, GOLD_G, GOLD_B)
+  doc.setTextColor(255, 255, 255)  // white text on blue
   doc.text(cat.toUpperCase(), MARGIN + 10, y + 13)
 }
 
@@ -209,7 +213,7 @@ function drawProductCard(
   // Harga
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(8.5)
-  doc.setTextColor(GOLD_R, GOLD_G, GOLD_B)
+  doc.setTextColor(184, 134, 11)  // dark goldenrod, readable on white
   const priceText = p.price === '-' || p.price === '' ? 'Hubungi Kami' : p.price
   doc.text(priceText, x + 4, ty + offset)
 }

@@ -204,14 +204,14 @@ export const allProducts: Product[] = [
     imgFile: "/products/28-hand-bag-2.jpg",
   },
   {
-    name: "Powerbank",
-    price: "-",
+    name: "Powerbank 1",
+    price: "Rp 260.000",
     cat: "Powerbank",
     ml: "",
     imgFile: "/products/29-powerbank.jpg",
   },
   {
-    name: "Powerbank 2",
+    name: "Powerbank 2 (Wireless)",
     price: "Rp 420.000",
     cat: "Powerbank",
     ml: "",
@@ -226,7 +226,7 @@ export const allProducts: Product[] = [
   },
   {
     name: "Earphone 2",
-    price: "Rp 220.000",
+    price: "Rp 240.000",
     cat: "Earphone",
     ml: "",
     imgFile: "/products/earphone 2.jpg",

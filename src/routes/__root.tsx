@@ -77,14 +77,6 @@ function Footer() {
             <Link to="/contact">Kontak</Link>
           </div>
         </div>
-        <div>
-          <div className="footer-nav-title">Kontak</div>
-          <div className="footer-nav">
-            <a>wa.me/081399768866</a>
-            <a>@markapromosindo</a>
-            <a>markapromosindo.com</a>
-          </div>
-        </div>
       </div>
       <div className="footer-bottom">
         <span className="footer-copy">© 2025 Marka Promosindo. All rights reserved.</span>

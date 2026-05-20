@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\lenovo\\\\marka-promosindo\\\\marka-promosindo-website\\\\src\" -Recurse -Name | Where-Object { $_ -match \"\\\\.\\(tsx|ts|js|css|html\\)$\" })"
+    ]
+  }
+}
